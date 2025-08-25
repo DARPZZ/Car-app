@@ -10,44 +10,64 @@ class BasicInfoWidget extends StatelessWidget {
     final carInfo = Provider.of<CarInfoProvider>(context).carInfo;
 
     if (carInfo == null) {
-      return const Scaffold(
-        body: Center(child: Text('No car info available')),
-      );
+      return const Center(child: Text('No car info available'));
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Basic Info'),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.ad_units_outlined), label: "Test"),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Text(
+            "Car Details",
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+
+          // RegNr and Status side by side
+          Row(
+            children: [
+              Expanded(child: _buildInfoCard("RegNr", carInfo.regNr)),
+              const SizedBox(width: 10),
+              Expanded(child: _buildInfoCard("Status", carInfo.status)),
+            ],
+          ),
+
+          // Rented Car and Model Year side by side
+          Row(
+            children: [
+              Expanded(child: _buildInfoCard("Rented Car", carInfo.rentedCar ? 'Yes' : 'No')),
+              const SizedBox(width: 10),
+              Expanded(child: _buildInfoCard("Model Year", carInfo.modelAar.toString())),
+            ],
+          ),
+
+          // Leasing Period full width
+          _buildInfoCard("Leasing Period", carInfo.leasingPeriode),
+
+          // Car Name and Car Model side by side
+          Row(
+            children: [
+              Expanded(child: _buildInfoCard("Car Name", carInfo.carNameType)),
+              const SizedBox(width: 10),
+              Expanded(child: _buildInfoCard("Car Model", carInfo.carModelType)),
+            ],
+          ),
+
+          // Engine Size and Km per Liter side by side
+          Row(
+            children: [
+              Expanded(child: _buildInfoCard("Engine Size", "${carInfo.motorStoerrelse} L")),
+              const SizedBox(width: 10),
+              Expanded(child: _buildInfoCard("Km per Liter", carInfo.motorKmPerLiter.toString())),
+            ],
+          ),
+
+          // Horse Power full width
+          _buildInfoCard("Horse Power", "${carInfo.motorHestekraefter} HP"),
         ],
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(
-              "Car Details",
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            _buildInfoCard("RegNr", carInfo.regNr),
-            _buildInfoCard("Status", carInfo.status),
-            _buildInfoCard("Rented Car", carInfo.rentedCar ? 'Yes' : 'No'),
-            _buildInfoCard("Leasing Period", carInfo.leasingPeriode),
-            _buildInfoCard("Car Name", carInfo.carNameType),
-            _buildInfoCard("Car Model", carInfo.carModelType),
-            _buildInfoCard("Model Year", carInfo.modelAar.toString()),
-            _buildInfoCard("Engine Size", "${carInfo.motorStoerrelse} L"),
-            _buildInfoCard("Horse Power", "${carInfo.motorHestekraefter} HP"),
-            _buildInfoCard("Km per Liter", carInfo.motorKmPerLiter.toString()),
-          ],
-        ),
       ),
     );
   }
@@ -57,9 +77,9 @@ class BasicInfoWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 6),
       elevation: 2,
       child: ListTile(
-        leading: Icon(Icons.directions_car, color: Colors.blueAccent),
+        leading: const Icon(Icons.directions_car, color: Colors.blueAccent),
         title: Text(title),
-        subtitle: Text(value, style: TextStyle(color: Colors.black87)),
+        subtitle: Text(value, style: const TextStyle(color: Colors.black87)),
       ),
     );
   }
