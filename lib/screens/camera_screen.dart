@@ -1,5 +1,5 @@
-import 'package:car_app_real/CarInfoProvider.dart';
-import 'package:car_app_real/car_info.dart';
+import 'package:car_app_real/providers/CarInfoProvider.dart';
+import 'package:car_app_real/models/car_info.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +9,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:io';
 import 'package:provider/provider.dart';
 import 'home_screen.dart';
-import '../main.dart';
+import '../../main.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -39,7 +39,7 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 
   Future<http.StreamedResponse> createAlbumFromFile(File file) async {
-    var uri = Uri.parse('http://10.148.69.131:8000/car/api/');
+    var uri = Uri.parse('');
     var request = http.MultipartRequest('POST', uri);
 
     request.files.add(

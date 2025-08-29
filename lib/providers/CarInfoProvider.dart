@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
-import 'car_info.dart';
+import '../models/car_info.dart';
 
 class CarInfoProvider extends ChangeNotifier {
   CarInfo? _carInfo;

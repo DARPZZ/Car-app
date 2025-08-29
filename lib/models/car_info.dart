@@ -10,7 +10,9 @@ class CarInfo {
   final double motorStoerrelse; 
   final double motorHestekraefter; 
   final double motorKmPerLiter;
-
+  final int totalVaegt;
+  final String drivkraftTypeNavn;
+  final List udstyrliste;
   CarInfo({
     required this.regNr,
     required this.status,
@@ -22,6 +24,9 @@ class CarInfo {
     required this.motorStoerrelse,
     required this.motorHestekraefter,
     required this.motorKmPerLiter,
+    required this.totalVaegt,
+    required this.drivkraftTypeNavn,
+    required this.udstyrliste,
   });
 
   factory CarInfo.fromJson(Map<String, dynamic> json) {
@@ -36,6 +41,10 @@ class CarInfo {
       motorStoerrelse: (json['motor_størrelse']?? 0),
       motorHestekraefter: (json['motor_hestekræfter']?? 0 ),
       motorKmPerLiter: (json['motorKmPerLiter'] ?? 0),
+      totalVaegt: (json['totalVaegt'] ?? 0),
+      drivkraftTypeNavn: (json['drivkraftTypeNavn']),
+      udstyrliste: (json['udstyr_liste']),
+
     );
   }
 }

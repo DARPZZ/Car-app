@@ -1,4 +1,4 @@
-import 'package:car_app_real/CarInfoProvider.dart';
+import 'package:car_app_real/providers/CarInfoProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +26,6 @@ class BasicInfoWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // RegNr and Status side by side
           Row(
             children: [
               Expanded(child: _buildInfoCard("RegNr", carInfo.regNr)),
@@ -35,7 +34,6 @@ class BasicInfoWidget extends StatelessWidget {
             ],
           ),
 
-          // Rented Car and Model Year side by side
           Row(
             children: [
               Expanded(child: _buildInfoCard("Rented Car", carInfo.rentedCar ? 'Yes' : 'No')),
@@ -44,10 +42,8 @@ class BasicInfoWidget extends StatelessWidget {
             ],
           ),
 
-          // Leasing Period full width
           _buildInfoCard("Leasing Period", carInfo.leasingPeriode),
 
-          // Car Name and Car Model side by side
           Row(
             children: [
               Expanded(child: _buildInfoCard("Car Name", carInfo.carNameType)),
@@ -56,7 +52,6 @@ class BasicInfoWidget extends StatelessWidget {
             ],
           ),
 
-          // Engine Size and Km per Liter side by side
           Row(
             children: [
               Expanded(child: _buildInfoCard("Engine Size", "${carInfo.motorStoerrelse} L")),
@@ -64,8 +59,6 @@ class BasicInfoWidget extends StatelessWidget {
               Expanded(child: _buildInfoCard("Km per Liter", carInfo.motorKmPerLiter.toString())),
             ],
           ),
-
-          // Horse Power full width
           _buildInfoCard("Horse Power", "${carInfo.motorHestekraefter} HP"),
         ],
       ),
